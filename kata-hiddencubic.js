@@ -14,11 +14,25 @@ the groups are 29, 45, 902, 631, 5. None is cubic.
 
 // 153 is such a "cubic" number: 1 ^ 3 + 5 ^ 3 + 3 ^ 3 = 153
 
-// {
-//   s = 'aqdf&0#1xyz!22[153(777.777';
-//   console.log(s);
-//   var thenum = s.replace(/[^0-9]/g, '');
-//   console.log(thenum);
+//number1 number2 (and so on if necessary) sumOfCubicNumbers Lucky
+
+// numbStr = [0, 1, 22 ,153 , 777 , 777]
+//EXPECTED RESULTS test
+// Expected: '0 1 153 Lucky', instead got: ' 0'
+// Expected: 'Unlucky', instead got: ''
+
+// s = "aqdf&0#1xyz!22[153(777.777";
+// s = 'QK29a45[&erui 0 9026315';
+// s = '&z371 upon 407298a --- dreary, ###100.153';
+// s = 'QK29a45[&erui9026315[153';
+// s = "0 9026315 -827&()";
+s = "abc445 & 407194a time198?/!407381Once upon62xyz370174abc85Once upon153238";
+// s = "a time70?/!Once upon90xyzxyz391 &";
+// s = "aqdf&01xyz153777.777";
+// s = "000.001 0jhf0ghf1jh234 0 1 001 0, hn0mlg0 000153";
+// s = "9026315 -827&()";
+console.log(s);
+
 //   let arr = [];
 //   let numb = s.match(/\d{1,3}?!(\.\d+)?/g);
 //   // let numb = s.match(/[^\d.-]?/g)
@@ -76,9 +90,6 @@ the groups are 29, 45, 902, 631, 5. None is cubic.
 //   // console.log(Number.isInteger(5.5))
 // }
 
-// s = 'aqdf&0#1xyz!22[153(777.777';
-// console.log(s);
-
 // let numbStr = s.match(/\d{1,3}(?![\.\d+])?/g);
 // console.log('Number String:', numbStr);
 
@@ -109,10 +120,6 @@ the groups are 29, 45, 902, 631, 5. None is cubic.
 //   if (total === numbStrer) console.log('it is a cube numbStrer');
 // }
 
-//number1 number2 (and so on if necessary) sumOfCubicNumbers Lucky
-
-// s = 'aqdf&0#1xyz!22[153(777.777';
-// console.log(s);
 // let numb = s.match(/\d{1,3}(?![\.\d+])?/g);
 // console.log('Number String:', numb);
 
@@ -132,41 +139,45 @@ the groups are 29, 45, 902, 631, 5. None is cubic.
 //   return (total === Number(numbStr[i]) ? `${numbStr[i]} "Lucky" : "Unlucky" `
 // }
 
-// console.log(hiddenCubic(numb));
-// // let val = hiddenCubic(numb);
-// // for (var i = 0; i < val.length; i++) {
-// //   console.log(val[i]);
-// // }
-
-// s = 'aqdf&0#1xyz!22[153(777.777';
-// s = 'QK29a45[&erui 0 9026315';
-// s = '&z371 upon 407298a --- dreary, ###100.153';
-// s = 'QK29a45[&erui9026315[153';
-// s = '0 9026315 -827&()';
-// s = 'aqdf&01xyz153777.777';
-s = "000.001 0jhf0ghf1jh234 0 1 001 0, hn0mlg0 000153";
-// s = '9026315 -827&()';
-console.log(s);
-
-// numbStr = [0, 1, 22 ,153 , 777 , 777]
-//EXPECTED RESULTS test
-// Expected: '0 1 153 Lucky', instead got: ' 0'
-// Expected: 'Unlucky', instead got: ''
+// function isSumOfCubes(s) {
+//   let numbArr = s.match(/\d{1,3}(?![\.\d+])?/g);
+//   console.log(numbArr);
+//   let lucky = "";
+//   let totcubics = 0;
+//   for (var i = 0; i < numbArr.length; i++) {
+//     sum = 0;
+//     for (var j = 0; j < numbArr[i].length; j++) {
+//       let str = numbArr[i];
+//       let cubic = Number(str[j]) ** 3;
+//       sum += cubic;
+//     }
+//     console.log(sum);
+//     if (sum === Number(numbArr[i])) {
+//       `${(lucky += " " + numbArr[i])}`;
+//       totcubics = totcubics + Number(numbArr[i]);
+//     }
+//   }
+//   return lucky ? `${lucky} ${totcubics} Lucky` : "Unluckly";
+// }
+// console.log(isSumOfCubes(s));
 
 function isSumOfCubes(s) {
   let numbArr = s.match(/\d{1,3}(?![\.\d+])?/g);
   console.log(numbArr);
-  let lucky = "";
+  let lucky = [];
   for (var i = 0; i < numbArr.length; i++) {
-    let sum = 0;
+    sum = 0;
     for (var j = 0; j < numbArr[i].length; j++) {
       let str = numbArr[i];
       let cubic = Number(str[j]) ** 3;
       sum += cubic;
     }
-    console.log(sum);
-    if (sum === Number(numbArr[i])) `${(lucky += " " + numbArr[i])}`;
+    if (sum === Number(numbArr[i])) lucky.push(Number(numbArr[i]));
   }
-  return lucky ? `${lucky} Lucky` : "Unluckly";
+  let sumcubics = lucky.reduce((a, b) => a + b, 0);
+
+  return lucky.length === 0
+    ? "Unluckly"
+    : `${lucky.join(" ")} ${sumcubics} Lucky`;
 }
 console.log(isSumOfCubes(s));
