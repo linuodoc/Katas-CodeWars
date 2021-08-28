@@ -1,3 +1,5 @@
+"use strict";
+
 /*
 1) We search non-negative integer numbers, 
 2) with at most 3 digits, 1 digit OR 2 digits or MAx 3 Digits 
