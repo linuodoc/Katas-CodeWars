@@ -24,8 +24,10 @@ Output string must be two numbers separated by a single space, and highest numbe
 // console.log(+num);
 // console.log(typeof num);
 
-function highAndLow(str) {
-  let myArr = str.split(" ").map((x) => +x);
-  return `${Math.max(...myArr)} ${Math.min(...myArr)}`;
-}
-console.log(highAndLow("1 2 3 4 5")); // return "5 1"
+// function highAndLow(str) {
+//   let myArr = str.split(" ").map((x) => +x);
+//   return `${Math.max(...myArr)} ${Math.min(...myArr)}`;
+// }
+// console.log(highAndLow("1 2 3 4 5")); // return "5 1"
+
+
